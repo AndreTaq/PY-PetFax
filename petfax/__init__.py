@@ -1,6 +1,4 @@
 from flask import Flask
-from . import pet
-from petfax import show_page
 
 def create_app():
     app = Flask(__name__)
@@ -9,7 +7,11 @@ def create_app():
     def hello():
         return "Hello, petfax! from __init__"
 
+    from . import pet
     app.register_blueprint(pet.bp)
-    app.register_blueprint(show_page.show_page_bp)
+
+    
+    from . import fact
+    app.register_blueprint(fact.bp)
 
     return app
